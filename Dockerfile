@@ -1,5 +1,4 @@
-FROM openjdk:19-jdk
-WORKDIR /app
-COPY target/quiz-hero-reborn*.jar app.jar
-EXPOSE 8080
-CMD ["java", "-jar", "app.jar"]
+FROM openjdk:17-jdk
+ARG JAR_FILE=target/quiz-hero-reborn*.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
