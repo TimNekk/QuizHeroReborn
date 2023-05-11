@@ -9,24 +9,18 @@ Java CLI application for quizzes based on [jService Trivia Questions](http://jse
 
 ## Usage
 
-### Installation
 
 Install web app using Maven
 
-```
-mvn clean package
-```
+    mvn clean package -DskipTests
 
-### Running
 
-Run it locally _(Put current app version)_
+Run it inside docker container
 
-```
-java -jar target\quiz-hero-1.0.0.jar
-```
+    docker-compose up --build
 
-Or run it inside docker container
+**Swagger UI** is available at http://localhost:8080/swagger-ui/index.html
 
-```
-docker-compose up
-```
+**PGAdmin** is available at http://localhost:5050
+
+    
