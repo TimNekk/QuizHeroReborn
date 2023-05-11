@@ -1,5 +1,5 @@
 <div align="center">
-  <img align="center" src="https://socialify.git.ci/TimNekk/QuizHero/image?description=1&font=Inter&language=1&name=1&pattern=Plus&theme=Light" alt="Chatter" width="640" height="320" />
+  <img align="center" src="https://socialify.git.ci/TimNekk/QuizHeroReborn/image?description=1&font=Inter&language=1&name=1&pattern=Plus&theme=Light" alt="Chatter" width="640" height="320" />
 </div>
 
 ## Overview
@@ -9,22 +9,24 @@ Java CLI application for quizzes based on [jService Trivia Questions](http://jse
 
 ## Usage
 
-Install client using Maven
+### Installation
+
+Install web app using Maven
 
 ```
-mvn clean package -DfinalName=quiz-hero-reborn
+mvn clean package
 ```
 
-Run it
+### Running
+
+Run it locally _(Put current app version)_
 
 ```
-java -jar target\quiz-hero-1.0.jar
+java -jar target\quiz-hero-1.0.0.jar
 ```
 
-You can specify amount of questions per request to [jService Trivia Questions](http://jservice.io/) with `-U` parameter _(default: 10)_. 
-
-**More = faster loading**
+Or run it inside docker container
 
 ```
-java -jar target\quiz-hero-1.0.jar -U 20
+docker-compose up
 ```
