@@ -3,8 +3,10 @@ package timnekk.quizheroreborn.auth;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import timnekk.quizheroreborn.exception.UsernameConflictException;
 import timnekk.quizheroreborn.user.Role;
 import timnekk.quizheroreborn.user.User;
 import timnekk.quizheroreborn.user.UserRepository;
@@ -18,6 +20,10 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
+        if (userRepository.existsByUsername(request.getUsername())) {
+            throw new UsernameConflictException("Username already exists");
+        }
+
         User user = User.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
@@ -41,7 +47,7 @@ public class AuthenticationService {
         );
 
         User user = userRepository.findByUsername(request.getUsername())
-                .orElseThrow();
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
