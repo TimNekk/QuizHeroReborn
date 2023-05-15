@@ -1,7 +1,7 @@
 <br/>
 <p align="center">
 
-  <img align="center" src="https://socialify.git.ci/TimNekk/QuizHeroReborn/image?description=1&font=Inter&language=1&name=1&pattern=Plus&theme=Light" alt="Chatter" width="640" height="320" />
+  <img align="center" src="https://socialify.git.ci/TimNekk/QuizHeroReborn/image?description=1&font=Inter&language=1&name=1&owner=1&pattern=Plus&theme=Light" alt="QuizHeroReborn" width="640" height="320" />
 
   <p align="center">
     <a href="https://github.com/TimNekk/QuizHeroReborn">View Demo</a>
