@@ -19,6 +19,9 @@ jwt:
   header: Authorization
   secret: ${JWT_SECRET}
 
+app:
+  questions-per-request: 100
+
 #logging:
 #  level:
 #    org:

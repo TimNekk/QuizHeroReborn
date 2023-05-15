@@ -1,5 +1,6 @@
 package timnekk.quizheroreborn.question;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import timnekk.quizheroreborn.exception.QuestionsFetchFailedException;
@@ -14,7 +15,9 @@ public class QuestionService {
 
     private final WebClient webClient;
     private final Queue<Question> questionPool = new ConcurrentLinkedQueue<>();
-    private static final int QUESTIONS_PER_REQUEST = 10;
+
+    @Value("${app.questions-per-request}")
+    private int questionsPerRequest;
 
     public QuestionService(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder.baseUrl("http://jservice.io/api/random").build();
@@ -37,7 +40,7 @@ public class QuestionService {
     private Question[] fetchQuestionsFromApi() {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
-                        .queryParam("count", QUESTIONS_PER_REQUEST)
+                        .queryParam("count", questionsPerRequest)
                         .build())
                 .retrieve()
                 .bodyToMono(Question[].class)
