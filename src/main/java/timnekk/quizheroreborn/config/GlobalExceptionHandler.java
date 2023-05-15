@@ -7,7 +7,12 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import timnekk.quizheroreborn.exception.GameSessionAlreadyExistException;
+import timnekk.quizheroreborn.exception.GameSessionDoesNotExistException;
+import timnekk.quizheroreborn.exception.QuestionsFetchFailedException;
 import timnekk.quizheroreborn.exception.UsernameConflictException;
+import timnekk.quizheroreborn.exception.model.StringExceptionResponse;
+import timnekk.quizheroreborn.exception.model.StringMapExceptionResponse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +21,7 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleValidationException(MethodArgumentNotValidException ex) {
+    public ResponseEntity<StringMapExceptionResponse> handleValidationException(MethodArgumentNotValidException ex) {
         BindingResult bindingResult = ex.getBindingResult();
         Map<String, String> errors = new HashMap<>();
 
@@ -24,12 +29,44 @@ public class GlobalExceptionHandler {
             errors.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(new StringMapExceptionResponse(errors));
     }
 
     @ExceptionHandler(UsernameConflictException.class)
-    public ResponseEntity<String> handleUsernameConflictException(UsernameConflictException ex) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    public ResponseEntity<StringExceptionResponse> handleUsernameConflictException(UsernameConflictException ex) {
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(new StringExceptionResponse(ex.getMessage()));
+    }
+
+    @ExceptionHandler(QuestionsFetchFailedException.class)
+    public ResponseEntity<StringExceptionResponse> handleQuestionsFetchFailedException(QuestionsFetchFailedException ex) {
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new StringExceptionResponse(ex.getMessage()));
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<StringExceptionResponse> handleIllegalStateException(IllegalStateException ex) {
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new StringExceptionResponse(ex.getMessage()));
+    }
+
+    @ExceptionHandler(GameSessionDoesNotExistException.class)
+    public ResponseEntity<StringExceptionResponse> handleGameSessionDoesNotExistException(GameSessionDoesNotExistException ex) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(new StringExceptionResponse(ex.getMessage()));
+    }
+
+    @ExceptionHandler(GameSessionAlreadyExistException.class)
+    public ResponseEntity<StringExceptionResponse> handleGameSessionAlreadyExistException(GameSessionAlreadyExistException ex) {
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(new StringExceptionResponse(ex.getMessage()));
     }
 
 }
