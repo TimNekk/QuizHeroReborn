@@ -4,11 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.*;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import timnekk.quizheroreborn.auth.JwtService;
@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(LeaderboardController.class)
-@WithMockUser
+@AutoConfigureMockMvc(addFilters = false)
 class LeaderboardControllerTest {
 
     @Autowired
@@ -44,9 +44,10 @@ class LeaderboardControllerTest {
 
     @BeforeEach
     public void setUp() {
-        request = new LeaderboardRequest();
-        request.setPage(1);
-        request.setPageSize(5);
+        request = LeaderboardRequest.builder()
+                .page(1)
+                .pageSize(5)
+                .build();
 
         LeaderboardEntry entry1 = new LeaderboardEntry("user1", 100);
         LeaderboardEntry entry2 = new LeaderboardEntry("user2", 90);
@@ -60,8 +61,9 @@ class LeaderboardControllerTest {
 
         Page<LeaderboardEntry> leaderboardPage = new PageImpl<>(entries, pageable, entries.size());
 
-        response = new LeaderboardResponse();
-        response.setLeaderboard(leaderboardPage);
+        response = LeaderboardResponse.builder()
+                .leaderboard(leaderboardPage)
+                .build();
     }
 
     @Test

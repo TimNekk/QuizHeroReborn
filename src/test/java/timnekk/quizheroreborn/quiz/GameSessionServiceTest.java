@@ -52,9 +52,10 @@ class GameSessionServiceTest {
 
     @BeforeEach
     public void setUp() {
-        testUser = new User();
-        testUser.setUsername("user1");
-        testUser.setPoints(100);
+        testUser = User.builder()
+                .username("user1")
+                .points(100)
+                .build();
 
         UserDetails userDetails = User.builder()
                 .username(testUser.getUsername())
@@ -62,16 +63,18 @@ class GameSessionServiceTest {
                 .role(Role.USER)
                 .build();
 
-        question = new Question();
-        question.setAnswer("testAnswer");
-        question.setDifficulty(1);
-        question.setValue("testQuestion");
+        question = Question.builder()
+                .answer("testAnswer")
+                .difficulty(2)
+                .value("testQuestion")
+                .build();
 
-        gameSession = new GameSession();
-        gameSession.setCurrentQuestion(question);
-        gameSession.setQuestionsAnswered(1);
-        gameSession.setPoints(0);
-        gameSession.setUsername(testUser.getUsername());
+        gameSession = GameSession.builder()
+                .currentQuestion(question)
+                .questionsAnswered(1)
+                .points(0)
+                .username(testUser.getUsername())
+                .build();
 
         when(currentUserComponent.getCurrentUser()).thenReturn(userDetails);
         when(redisTemplate.opsForValue()).thenReturn(valueOperations);

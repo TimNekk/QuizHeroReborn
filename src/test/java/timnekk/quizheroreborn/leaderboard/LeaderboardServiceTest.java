@@ -33,13 +33,15 @@ class LeaderboardServiceTest {
 
     @BeforeEach
     public void setUp() {
-        request = new LeaderboardRequest();
-        request.setPage(1);
-        request.setPageSize(5);
+        request = LeaderboardRequest.builder()
+                .page(1)
+                .pageSize(5)
+                .build();
 
-        testUser = new User();
-        testUser.setUsername("user1");
-        testUser.setPoints(100);
+        testUser = User.builder()
+                .username("user1")
+                .points(100)
+                .build();
     }
 
     @Test
