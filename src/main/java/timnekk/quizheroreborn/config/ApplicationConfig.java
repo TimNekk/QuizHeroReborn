@@ -20,6 +20,7 @@ import timnekk.quizheroreborn.user.UserRepository;
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
+
     private final UserRepository userRepository;
 
     @Bean
@@ -63,4 +64,5 @@ public class ApplicationConfig {
                 .components(new Components().addSecuritySchemes("bearerAuth", jwtScheme())
                 );
     }
+
 }
