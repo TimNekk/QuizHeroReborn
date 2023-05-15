@@ -4,14 +4,6 @@
   <img align="center" src="https://socialify.git.ci/TimNekk/QuizHeroReborn/image?description=1&font=Inter&language=1&name=1&owner=1&pattern=Plus&theme=Light" alt="QuizHeroReborn" width="640" height="320" />
 
   <p align="center">
-    <a href="https://github.com/TimNekk/QuizHeroReborn">View Demo</a>
-    •
-    <a href="https://github.com/TimNekk/QuizHeroReborn/issues">Report Bug</a>
-    •
-    <a href="https://github.com/TimNekk/QuizHeroReborn/issues">Request Feature</a>
-  </p>
-
-  <p align="center">
     <img src="https://github.com/TimNekk/QuizHeroReborn/actions/workflows/maven.yml/badge.svg" alt="Tests">
     <img src="https://img.shields.io/github/contributors/TimNekk/QuizHeroReborn?color=dark-green" alt="Contributors">
     <img src="https://img.shields.io/github/issues/TimNekk/QuizHeroReborn" alt="Issues">
