@@ -1,4 +1,4 @@
-package timnekk.quizheroreborn.leaderboard;
+package timnekk.quizheroreborn.auth.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LeaderboardEntry {
+public class AuthenticationRequest {
     private String username;
-    private int points;
+    private String password;
 }

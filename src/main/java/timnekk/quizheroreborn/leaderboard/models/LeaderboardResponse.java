@@ -1,4 +1,4 @@
-package timnekk.quizheroreborn.leaderboard;
+package timnekk.quizheroreborn.leaderboard.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

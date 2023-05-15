@@ -6,8 +6,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import timnekk.quizheroreborn.leaderboard.models.LeaderboardEntry;
+import timnekk.quizheroreborn.leaderboard.models.LeaderboardRequest;
+import timnekk.quizheroreborn.leaderboard.models.LeaderboardResponse;
 import timnekk.quizheroreborn.user.UserRepository;
-import timnekk.quizheroreborn.user.User;
+import timnekk.quizheroreborn.user.model.User;
 
 @Service
 @RequiredArgsConstructor

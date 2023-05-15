@@ -1,4 +1,4 @@
-package timnekk.quizheroreborn.user;
+package timnekk.quizheroreborn.user.model;
 
 import jakarta.persistence.*;
 import lombok.*;

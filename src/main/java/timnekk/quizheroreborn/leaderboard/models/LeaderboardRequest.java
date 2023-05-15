@@ -1,4 +1,4 @@
-package timnekk.quizheroreborn.leaderboard;
+package timnekk.quizheroreborn.leaderboard.models;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

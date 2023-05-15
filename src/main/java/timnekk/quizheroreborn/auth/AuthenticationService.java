@@ -6,9 +6,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import timnekk.quizheroreborn.auth.models.AuthenticationRequest;
+import timnekk.quizheroreborn.auth.models.AuthenticationResponse;
+import timnekk.quizheroreborn.auth.models.RegisterRequest;
 import timnekk.quizheroreborn.exception.UsernameConflictException;
-import timnekk.quizheroreborn.user.Role;
-import timnekk.quizheroreborn.user.User;
+import timnekk.quizheroreborn.user.model.Role;
+import timnekk.quizheroreborn.user.model.User;
 import timnekk.quizheroreborn.user.UserRepository;
 
 @Service
