@@ -7,7 +7,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import timnekk.quizheroreborn.exception.GameSessionAlreadyExistException;
+import timnekk.quizheroreborn.exception.GameSessionAlreadyExistsException;
 import timnekk.quizheroreborn.exception.GameSessionDoesNotExistException;
 import timnekk.quizheroreborn.exception.QuestionsFetchFailedException;
 import timnekk.quizheroreborn.exception.UsernameConflictException;
@@ -62,8 +62,8 @@ public class GlobalExceptionHandler {
                 .body(new StringExceptionResponse(ex.getMessage()));
     }
 
-    @ExceptionHandler(GameSessionAlreadyExistException.class)
-    public ResponseEntity<StringExceptionResponse> handleGameSessionAlreadyExistException(GameSessionAlreadyExistException ex) {
+    @ExceptionHandler(GameSessionAlreadyExistsException.class)
+    public ResponseEntity<StringExceptionResponse> handleGameSessionAlreadyExistException(GameSessionAlreadyExistsException ex) {
         return ResponseEntity
                 .status(HttpStatus.CONFLICT)
                 .body(new StringExceptionResponse(ex.getMessage()));

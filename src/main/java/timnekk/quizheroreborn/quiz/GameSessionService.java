@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import timnekk.quizheroreborn.auth.CurrentUserComponent;
-import timnekk.quizheroreborn.exception.GameSessionAlreadyExistException;
+import timnekk.quizheroreborn.exception.GameSessionAlreadyExistsException;
 import timnekk.quizheroreborn.exception.GameSessionDoesNotExistException;
 import timnekk.quizheroreborn.question.model.Question;
 import timnekk.quizheroreborn.question.QuestionService;
@@ -30,14 +30,14 @@ public class GameSessionService {
 
     public GameSessionResponse startGameSession() {
         if (getCurrentGameSession().isPresent()) {
-            throw new GameSessionAlreadyExistException("Game session already exist");
+            throw new GameSessionAlreadyExistsException("Game session already exist");
         }
 
         GameSession gameSession = createGameSession();
 
         return GameSessionResponse.builder()
                 .points(gameSession.getPoints())
-                .questionCount(gameSession.getQuestionCount())
+                .questionsAnswered(gameSession.getQuestionsAnswered())
                 .build();
     }
 
@@ -60,7 +60,7 @@ public class GameSessionService {
             session.setPoints(session.getPoints() + currentQuestion.getDifficulty());
         }
 
-        session.setQuestionCount(session.getQuestionCount() + 1);
+        session.setQuestionsAnswered(session.getQuestionsAnswered() + 1);
         setNextQuestion(session);
 
         return AnswerResponse.builder()
@@ -74,7 +74,7 @@ public class GameSessionService {
 
         return GameSessionResponse.builder()
                 .points(session.getPoints())
-                .questionCount(session.getQuestionCount())
+                .questionsAnswered(session.getQuestionsAnswered())
                 .build();
     }
 
@@ -87,7 +87,7 @@ public class GameSessionService {
 
         return GameSessionResponse.builder()
                 .points(session.getPoints())
-                .questionCount(session.getQuestionCount())
+                .questionsAnswered(session.getQuestionsAnswered())
                 .build();
     }
 
