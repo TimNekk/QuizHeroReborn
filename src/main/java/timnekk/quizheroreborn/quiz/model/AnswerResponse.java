@@ -1,4 +1,4 @@
-package timnekk.quizheroreborn.leaderboard;
+package timnekk.quizheroreborn.quiz.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LeaderboardEntry {
-    private String username;
-    private int points;
+public class AnswerResponse {
+
+    private boolean isCorrect;
+    private String correctAnswer;
+
 }

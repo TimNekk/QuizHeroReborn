@@ -1,4 +1,4 @@
-package timnekk.quizheroreborn.auth;
+package timnekk.quizheroreborn.auth.models;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
