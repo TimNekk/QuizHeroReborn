@@ -100,7 +100,7 @@ docker-compose up --build
 Endpoint are protected with JWT, so make sure to register first and authorize using Bearer token.
 
 Answers to most of the questions can be
-found [here](https://jeopardyquestions.com/site-where-1-of-the-7-wonders-of-the-ancient-world-hung-around).
+found [here](https://jeopardyquestions.com/).
 
 ## Contributing
 
