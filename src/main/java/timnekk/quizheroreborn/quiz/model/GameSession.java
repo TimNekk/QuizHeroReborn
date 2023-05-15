@@ -16,6 +16,6 @@ public class GameSession {
     private String username;
     private Question currentQuestion;
     private int points;
-    private int questionCount;
+    private int questionsAnswered;
 
 }

@@ -6,11 +6,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
+      ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   data:
@@ -22,3 +18,11 @@ spring:
 jwt:
   header: Authorization
   secret: ${JWT_SECRET}
+
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        web: DEBUG
+#    timnekk:
+#      quiz-hero-reborn: INFO

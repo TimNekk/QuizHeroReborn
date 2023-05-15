@@ -15,6 +15,7 @@ import timnekk.quizheroreborn.user.model.User;
 @Service
 @RequiredArgsConstructor
 public class LeaderboardService {
+
     private final UserRepository userRepository;
 
     public LeaderboardResponse getLeaderboard(LeaderboardRequest request) {
@@ -31,4 +32,5 @@ public class LeaderboardService {
                 .leaderboard(leaderboard)
                 .build();
     }
+
 }

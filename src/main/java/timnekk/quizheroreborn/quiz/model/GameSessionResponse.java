@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class GameSessionResponse {
 
     private int points;
-    private int questionCount;
+    private int questionsAnswered;
 
 }
