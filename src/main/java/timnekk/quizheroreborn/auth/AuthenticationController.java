@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import timnekk.quizheroreborn.auth.models.RegisterRequest;
 import timnekk.quizheroreborn.exception.model.StringExceptionResponse;
 import timnekk.quizheroreborn.exception.model.StringMapExceptionResponse;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
@@ -38,8 +40,15 @@ public class AuthenticationController {
     })
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@Valid @RequestBody RegisterRequest request) {
-        AuthenticationResponse response = authenticationService.register(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        log.info("Received registration request for username: {}", request.getUsername());
+        try {
+            AuthenticationResponse response = authenticationService.register(request);
+            log.info("Registration successful for username: {}", request.getUsername());
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } catch (Exception ex) {
+            log.error("Error occurred while registering user: {}", request.getUsername());
+            throw ex;
+        }
     }
 
     @Operation(summary = "Authenticate user")
@@ -51,8 +60,14 @@ public class AuthenticationController {
     })
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody AuthenticationRequest request) {
-        AuthenticationResponse response = authenticationService.authenticate(request);
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+        log.info("Received authentication request for username: {}", request.getUsername());
+        try {
+            AuthenticationResponse response = authenticationService.authenticate(request);
+            log.info("Authentication successful for username: {}", request.getUsername());
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch (Exception ex) {
+            log.error("Error occurred while authenticating user: {}", request.getUsername());
+            throw ex;
+        }
     }
-
 }
