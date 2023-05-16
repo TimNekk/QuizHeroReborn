@@ -38,6 +38,8 @@ formed based on user points.
 * [Redis](https://redis.io/)
 * [Springdoc](https://springdoc.org/)
 * [JWT](https://jwt.io/)
+* [Logback](http://logback.qos.ch/)
+* [Spring OAP](https://docs.spring.io/spring/reference/core/aop.html)
 
 ## Getting Started
 
