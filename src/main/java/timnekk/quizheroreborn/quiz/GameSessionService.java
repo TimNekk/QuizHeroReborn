@@ -143,7 +143,7 @@ public class GameSessionService {
     }
 
     private boolean isAnswerCorrect(Question question, AnswerRequest answerRequest) {
-        return question.getAnswer().equalsIgnoreCase(answerRequest.getAnswer());
+        return question.getAnswer().strip().equalsIgnoreCase(answerRequest.getAnswer().strip());
     }
 
     private void addPointsToUser(GameSession session) {
